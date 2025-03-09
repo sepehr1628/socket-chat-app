@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        primary: "url(/background.png)",
+        auth: "url(/background2.png)",
+      },
     },
   },
   plugins: [],
