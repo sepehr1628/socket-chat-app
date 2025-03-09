@@ -1,6 +1,7 @@
 import Header from "@/app/_components/Header";
 import Main from "@/app/_components/Main";
 import Aside from "./_components/Aside";
+import SettingModal from "./_components/SettingModal";
 
 const Page: React.FC = async function () {
   return (
@@ -11,6 +12,7 @@ const Page: React.FC = async function () {
 
       <Aside />
       <Main />
+      <SettingModal />
     </div>
   );
 };
