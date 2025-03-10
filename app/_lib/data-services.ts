@@ -7,7 +7,6 @@ export const getConversations = async (userId: string) => {
     .or(`user1_id.eq.${userId},user2_id.eq.${userId}`);
 
   if (error) {
-    console.error("Error fetching conversations:", error);
     return [];
   }
 
@@ -22,9 +21,30 @@ export const getMessages = async (conversationId: string) => {
     .order("created_at", { ascending: true });
 
   if (error) {
-    console.error("Error fetching messages:", error);
     return [];
   }
 
   return data;
+};
+
+export const getUser = async (email: string) => {
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("email", email);
+
+  if (error) throw new Error(error.message);
+
+  return data.length > 0 ? data[0] : null;
+};
+
+export const createUser = async (newUser: { name: string; email: string }) => {
+  const { data, error } = await supabase
+    .from("users")
+    .insert([{ name: newUser.name, email: newUser.email }])
+    .select();
+
+  if (error) throw new Error("User cannot be created!");
+
+  return data[0];
 };

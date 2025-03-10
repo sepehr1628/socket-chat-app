@@ -1,7 +1,7 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
-import { type NextRequest } from "next/server";
 import { type Session } from "next-auth";
+import { createUser, getUser } from "./data-services";
 
 const authConfig: NextAuthConfig = {
   providers: [
@@ -11,14 +11,27 @@ const authConfig: NextAuthConfig = {
     }),
   ],
   callbacks: {
-    authorized({
-      auth,
-      request,
-    }: {
-      auth: Session | null;
-      request: NextRequest;
-    }): boolean {
+    authorized({ auth }: { auth: Session | null }): boolean {
       return !!auth?.user;
+    },
+    async signIn({ user }) {
+      try {
+        if (!user.email) return false;
+
+        const existingUser = await getUser(user.email);
+
+        if (!existingUser)
+          await createUser({ name: user.name ?? "Unknown", email: user.email });
+        return true;
+      } catch {
+        return false;
+      }
+    },
+
+    async session({ session }) {
+      const user = await getUser(session.user.email);
+      session.user.id = user.id;
+      return session;
     },
   },
   pages: {
