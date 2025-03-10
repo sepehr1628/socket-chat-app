@@ -38,10 +38,24 @@ export const getUser = async (email: string) => {
   return data.length > 0 ? data[0] : null;
 };
 
-export const createUser = async (newUser: { name: string; email: string }) => {
+export const getConversationUser = async (id: string) => {
+  const { data, error } = await supabase.from("users").select("*").eq("id", id);
+
+  if (error) throw new Error(error.message);
+
+  return data.length > 0 ? data[0] : null;
+};
+
+export const createUser = async (newUser: {
+  name: string;
+  email: string;
+  image: string;
+}) => {
   const { data, error } = await supabase
     .from("users")
-    .insert([{ name: newUser.name, email: newUser.email }])
+    .insert([
+      { name: newUser.name, email: newUser.email, image: newUser.image },
+    ])
     .select();
 
   if (error) throw new Error("User cannot be created!");

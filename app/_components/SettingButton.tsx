@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { useAppContext } from "./UIcontext";
-import SettingModal from "./SettingModal";
 
 const SettingButton: React.FC = function () {
   const { openModal } = useAppContext();

@@ -2,28 +2,28 @@
 
 import { createContext, useState, useContext, ReactNode, useMemo } from "react";
 
-// Define the shape of the context state
 type Theme = "light" | "dark";
 
 type AppContextType = {
+  isSelectChatOpen: boolean;
   theme: Theme;
   isModalOpen: boolean;
   toggleTheme: () => void;
   openModal: () => void;
   closeModal: () => void;
+  selectChat: () => void;
 };
 
-// Create the context with a default value
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-// Define the provider component
 type AppProviderProps = {
   children: ReactNode;
 };
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [theme, setTheme] = useState<Theme>("light");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSelectChatOpen, setIsSelectChatOpen] = useState<boolean>(true);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
@@ -37,15 +37,21 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     setIsModalOpen(false);
   };
 
+  const selectChat = () => {
+    setIsSelectChatOpen(false);
+  };
+
   const contextValue = useMemo(
     () => ({
+      isSelectChatOpen,
+      selectChat,
       theme,
       isModalOpen,
       toggleTheme,
       openModal,
       closeModal,
     }),
-    [theme, isModalOpen]
+    [theme, isModalOpen, isSelectChatOpen]
   );
 
   return (

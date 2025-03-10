@@ -4,7 +4,7 @@ const Main: React.FC = function () {
   return (
     <>
       <main className="">
-        <SelectChat />
+        <SelectChat />{" "}
       </main>
     </>
   );

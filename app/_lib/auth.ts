@@ -21,7 +21,11 @@ const authConfig: NextAuthConfig = {
         const existingUser = await getUser(user.email);
 
         if (!existingUser)
-          await createUser({ name: user.name ?? "Unknown", email: user.email });
+          await createUser({
+            name: user.name ?? "Unknown",
+            email: user.email,
+            image: user.image ?? "/user.png",
+          });
         return true;
       } catch {
         return false;
