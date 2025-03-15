@@ -1,6 +1,7 @@
 import { auth } from "../_lib/auth";
 import { getConversations } from "../_lib/data-services";
 import Conversation from "./Conversation";
+import ConversationWrapper from "./ConversationWrapper";
 import SettingButton from "./SettingButton";
 
 const Aside: React.FC = async function () {
@@ -12,7 +13,9 @@ const Aside: React.FC = async function () {
     <aside className="group bg-slate-800 relative">
       <ul>
         {conversations.map((conversation) => (
-          <Conversation key={conversation.id} conversationInfo={conversation} />
+          <ConversationWrapper chatId={conversation.id} key={conversation.id}>
+            <Conversation conversationInfo={conversation} />
+          </ConversationWrapper>
         ))}
       </ul>
 

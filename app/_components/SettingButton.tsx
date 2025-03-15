@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useAppContext } from "./UIcontext";
 
-const SettingButton: React.FC = function () {
+const SettinButton: React.FC = function () {
   const { openModal } = useAppContext();
   return (
     <button
@@ -13,4 +13,4 @@ const SettingButton: React.FC = function () {
     </button>
   );
 };
-export default SettingButton;
+export default SettinButton;

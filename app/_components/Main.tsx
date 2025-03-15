@@ -1,12 +1,13 @@
-import SelectChat from "./SelectChat";
+import ChatContainer from "./ChatContainer";
+import Chat from "./Chat";
 
 const Main: React.FC = function () {
   return (
-    <>
-      <main className="">
-        <SelectChat />{" "}
-      </main>
-    </>
+    <main>
+      <ChatContainer>
+        <Chat />
+      </ChatContainer>
+    </main>
   );
 };
 

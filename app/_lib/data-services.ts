@@ -23,6 +23,8 @@ export const getMessages = async (conversationId: string) => {
   if (error) {
     return [];
   }
+  if (typeof conversationId === undefined || typeof conversationId === null)
+    throw new Error("ConversationId is not set correctly");
 
   return data;
 };
