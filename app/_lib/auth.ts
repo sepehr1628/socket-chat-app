@@ -4,6 +4,7 @@ import { type Session } from "next-auth";
 import { createUser, getUser } from "./data-services";
 
 const authConfig: NextAuthConfig = {
+  debug: true,
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID as string,

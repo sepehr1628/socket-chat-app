@@ -2,6 +2,7 @@
 "use client";
 import { useRef } from "react";
 import { useAppContext } from "./UIcontext";
+import { BiDoorOpen } from "react-icons/bi";
 
 const SettingModal: React.FC = function () {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -20,7 +21,7 @@ const SettingModal: React.FC = function () {
     >
       <div
         ref={ref}
-        className={`w-[500px] h-[500px] bg-gray-400 absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] ${
+        className={`w-[500px] h-[500px]  absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] ${
           isModalOpen ? "block" : "hidden"
         }`}
       ></div>

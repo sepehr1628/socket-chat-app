@@ -40,7 +40,9 @@ const Conversation: React.FC<ConversationProps> = async function ({
         alt="user profile"
       />
       <div className="h-full flex flex-col items-start justify-between flex-grow">
-        <h3 className="text-xl text-white">{otherUser.name}</h3>
+        <h3 className="text-xl text-white whitespace-normal w-12">
+          {otherUser.name}
+        </h3>
         <p className="text-gray-400 text-sm">{lastMesg.content}</p>
       </div>
       {lastMesg.sender_id === session.user.id ? (

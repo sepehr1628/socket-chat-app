@@ -1,12 +1,11 @@
+import { auth } from "../_lib/auth";
 import ChatContainer from "./ChatContainer";
-import Chat from "./Chat";
 
-const Main: React.FC = function () {
+const Main: React.FC = async function () {
+  const session = await auth();
   return (
     <main>
-      <ChatContainer>
-        <Chat />
-      </ChatContainer>
+      <ChatContainer userId={session?.user?.id} />
     </main>
   );
 };

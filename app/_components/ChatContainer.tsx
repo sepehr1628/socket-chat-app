@@ -1,19 +1,18 @@
 "use client";
+import Chat from "./Chat";
 import { useConversation } from "./ConversationContext";
 import SelectChat from "./SelectChat";
 
-interface ChatContainerPropTypes {
-  children: React.ReactNode;
-}
+type ChatProps = {
+  userId: string;
+};
 
-const ChatContainer: React.FC<ChatContainerPropTypes> = function ({
-  children,
-}) {
+const ChatContainer: React.FC<ChatProps> = function ({ userId }) {
   const { selectedConversationId } = useConversation();
 
   return (
     <div className="w-full h-full">
-      {selectedConversationId ? children : <SelectChat />}
+      {selectedConversationId ? <Chat userId={userId} /> : <SelectChat />}
     </div>
   );
 };

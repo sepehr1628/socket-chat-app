@@ -6,7 +6,7 @@ const Header: React.FC = async function () {
   const userImage = session?.user?.image || "/user.png";
 
   return (
-    <header className="bg-gray-700 p-4 border-b border-gray-400 border-solid">
+    <header className="bg-gray-700 p-4">
       <h1 className="flex items-center gap-4 text-white">
         <Image
           src={userImage}
