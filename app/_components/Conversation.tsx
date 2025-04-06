@@ -2,8 +2,6 @@ import Image from "next/image";
 import { auth } from "../_lib/auth";
 import { getConversationUser, getMessages } from "../_lib/data-services";
 
-import { HiCheckCircle } from "react-icons/hi";
-
 type ConversationProps = {
   conversationInfo: {
     id: string;
@@ -40,20 +38,16 @@ const Conversation: React.FC<ConversationProps> = async function ({
         alt="user profile"
       />
       <div className="h-full flex flex-col items-start justify-between flex-grow">
-        <h3 className="text-xl text-white whitespace-normal w-12">
+        <h3 className="text-xl text-white whitespace-normal">
           {otherUser.name}
         </h3>
-        <p className="text-gray-400 text-sm">{lastMesg.content}</p>
-      </div>
-      {lastMesg.sender_id === session.user.id ? (
-        <div>
-          <HiCheckCircle
-            style={{
-              color: "green",
-            }}
-          />
+        <div className="flex items-center gap-1">
+          {lastMesg.sender_id === session.user.id ? (
+            <p className="text-gray-300 text-sm">You:</p>
+          ) : null}
+          <p className="text-gray-400 text-sm">{lastMesg.content}</p>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 };

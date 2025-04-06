@@ -10,7 +10,7 @@ const Aside: React.FC = async function () {
   if (!session?.user?.id) return;
   const conversations = await getConversations(session?.user?.id);
   return (
-    <aside className="group bg-slate-800 relative border-e border-solid border-gray-500">
+    <aside className="overflow-y-auto group bg-slate-800 border-e border-solid border-gray-500">
       <ul>
         {conversations.map((conversation) => (
           <ConversationWrapper chatId={conversation.id} key={conversation.id}>

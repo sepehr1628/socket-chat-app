@@ -1,5 +1,3 @@
-import { auth } from "../_lib/auth";
-
 interface MessagePropTypes {
   message: {
     id: string;
@@ -26,7 +24,9 @@ const Message: React.FC<MessagePropTypes> = function ({ message, userId }) {
     >
       <div
         className={`flex ${
-          message.sender_id === userId ? "justify-start" : "justify-end"
+          message.sender_id === userId
+            ? "justify-start bg-blue-950"
+            : "justify-end bg-slate-700"
         } items-center gap-3 px-3 py-2 bg-slate-800 w-fit text-white rounded-3xl`}
       >
         <span className="text-slate-400 text-xs">{time}</span>
